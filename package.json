@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@zeit/next-less": "^1.0.1",
+    "less": "^3.9.0",
     "next": "^7.0.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
