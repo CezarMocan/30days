@@ -8,7 +8,53 @@ export default class Index extends React.Component {
     super(props)
     this.WIDTH = 700
     this.HEIGHT = 700
+
+
+    this.state = {
+      recording: false
+    }
+    this.record = this.record.bind(this)
   }
+  record() {
+    const { recording } = this.state
+    if (!recording) {
+      this.setState({ recording: true })
+      this.chunks = []
+      this.chunks.length = 0;
+      let stream = document.querySelector('canvas').captureStream(30)
+      this.recorder = new MediaRecorder(stream);
+      this.recorder.ondataavailable = e => {
+        if (e.data.size) this.chunks.push(e.data)
+      }
+      this.recorder.onstop = this.exportVideo.bind(this);
+      this.recorder.start()
+
+    } else {
+      this.recorder.stop()
+    }
+  }
+
+  exportVideo() {
+    var blob = new Blob(this.chunks);
+    var vid = document.createElement('video');
+    vid.id = 'recorded'
+    vid.controls = true;
+    const src = URL.createObjectURL(blob);
+
+    var a = document.createElement('a');
+    document.body.appendChild(a);
+    a.style = 'display: none';
+    a.href = src;
+    a.download = 'test.webm';
+    a.click();
+    window.URL.revokeObjectURL(src);
+
+    // console.log('Src: ', src)
+    // vid.src = URL.createObjectURL(blob);
+    // document.body.appendChild(vid);
+    // vid.play();
+  }
+
   _setup() {
     this.p5.createCanvas(this.WIDTH, this.HEIGHT)
     this.p5.background(255)
@@ -27,6 +73,7 @@ export default class Index extends React.Component {
     }, 'p5-canvas')
   }
   render() {
+    const { recording } = this.state
     return (
       <div>
         <Head withP5={true}/>
@@ -43,6 +90,7 @@ export default class Index extends React.Component {
           width: this.WIDTH,
           height: this.HEIGHT
         }}></div>
+        <button onClick={this.record}>{!recording ? 'Start Recording' : 'Stop Recording'}</button>
       </div>
     )
   }
