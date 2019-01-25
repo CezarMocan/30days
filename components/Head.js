@@ -10,7 +10,7 @@ export default class HeadComponent extends React.Component {
         <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
         <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
         <link rel="icon" href="/static/favicon.ico" type="image/x-icon"/>
-        { withP5 && <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script> }
+        { withP5 && <script src="/static/p5.js"></script> }
       </Head>
     )
   }
