@@ -40,7 +40,6 @@ export default class Index extends React.Component {
     vid.id = 'recorded'
     vid.controls = true;
     const src = URL.createObjectURL(blob);
-
     var a = document.createElement('a');
     document.body.appendChild(a);
     a.style = 'display: none';
@@ -48,11 +47,6 @@ export default class Index extends React.Component {
     a.download = 'test.webm';
     a.click();
     window.URL.revokeObjectURL(src);
-
-    // console.log('Src: ', src)
-    // vid.src = URL.createObjectURL(blob);
-    // document.body.appendChild(vid);
-    // vid.play();
   }
 
   _setup() {
