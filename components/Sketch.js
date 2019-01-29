@@ -48,7 +48,10 @@ export default class Index extends React.Component {
     a.click();
     window.URL.revokeObjectURL(src);
   }
-
+  _preload() {
+    this.preload()
+  }
+  preload() { }
   _setup() {
     this.p5.createCanvas(this.WIDTH, this.HEIGHT)
     this.p5.background(255)
@@ -62,6 +65,7 @@ export default class Index extends React.Component {
   componentDidMount() {
     new p5((s) => {
       this.p5 = s
+      this.p5.preload = this._preload.bind(this)
       this.p5.setup = this._setup.bind(this)
       this.p5.draw = this._draw.bind(this)
     }, 'p5-canvas')

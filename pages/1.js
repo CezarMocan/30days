@@ -17,7 +17,7 @@ export default class Index extends Sketch {
   draw() {
     const time = (this.p5.millis() / 1500 + 6.5)
     this.p5.clear()
-    this.p5.background(205, 205, 205)        
+    this.p5.background(205, 205, 205)
     this.p5.fill(250, 250, 250)
     this.p5.noStroke()
     let circles = []
@@ -30,7 +30,7 @@ export default class Index extends Sketch {
       circles.push({ x: x, y: y, r: r })
     }
 
-    this.p5.stroke(255)    
+    this.p5.stroke(255)
     for (let i = 0; i < 10; i++) {
       for (let j = i + 1; j < 10; j++) {
         this.p5.strokeWeight(circles[i].r / 2 + 5)
