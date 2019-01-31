@@ -21,7 +21,7 @@ export default class Index extends Sketch {
     this.points = []
     for (let i = 0; i < this.NO_POINTS; i++) {
       // this.points.push({ x: Math.random() * this.HEIGHT, y: Math.random() * this.WIDTH})
-      this.points.push({ x: 450 + 200 * Math.cos(i / this.NO_POINTS * 2 * Math.PI), y: 650 + 10 * Math.sin(i / this.NO_POINTS * 2 * Math.PI)})
+      this.points.push({ x: 450 + 200 * Math.cos(i / this.NO_POINTS * 2 * Math.PI), y: 650 + 1 * Math.sin(i / this.NO_POINTS * 2 * Math.PI)})
       this.targetPoints[i] = { x: 350, y: 100}
       this.points[i].distance = {
         x: this.targetPoints[i].x - this.points[i].x,
@@ -30,11 +30,6 @@ export default class Index extends Sketch {
     }
   }
 
-  // draw() {
-  //   this.p5.noStroke()
-  //   this.p5.fill(0)
-  //   this.points.forEach(p => this.p5.circle(p.x, p.y, 1))
-  // }
   getNearestIndex(p, excludeList, start) {
     let index = -1
     let dist = 1000000000
@@ -53,9 +48,6 @@ export default class Index extends Sketch {
 
   draw() {
     const time = (this.p5.millis() / 1000)
-    // if (time < 2) return
-    // this.p5.background(22)
-
     this.p5.noStroke()
     this.p5.fill(this.colors.r, this.colors.g, this.colors.b, this.colors.a)
 
@@ -100,9 +92,9 @@ export default class Index extends Sketch {
 
     // this.p5.translate(0, -1)
 
-    // this.colors.g = (this.colors.g + Math.sin(time) + 1) % 256
-    // this.colors.b = (this.colors.b + 1) % 256
-    // this.colors.r = (this.colors.r + Math.cos(time) + 0.5) % 256
+    // this.colors.g = parseInt(this.colors.g + Math.sin(time / 10) + 1) % 256
+    // this.colors.b = parseInt(this.colors.b + 1) % 256
+    // this.colors.r = parseInt(this.colors.r - 1) % 256
 
     // if (this.points.length < 100)
     //   this.points.push({ x: 350 + 200 * Math.cos(Math.random() * 2 * Math.PI), y: 350 + 200 * Math.sin(Math.random() * 2 * Math.PI)})
